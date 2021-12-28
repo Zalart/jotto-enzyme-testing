@@ -3,9 +3,10 @@ import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Congrats from './Congrats';
 import {findByTestAttr, checkProps} from "../test/testUtils";
 Enzyme.configure({adapter: new EnzymeAdapter()});
-
+const initialProps = {success: false}
 const setup = (props={}) => {
-    return shallow(<Congrats {...props} />);
+    const setupProps = {...initialProps, ...props}
+    return shallow(<Congrats {...setupProps} />);
 }
 
 test('renders without errors', ()=> {
