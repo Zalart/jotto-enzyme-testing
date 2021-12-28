@@ -1,6 +1,6 @@
 // receive the success state as a prop
 import React from 'react';
-
+import PropTypes from 'prop-types';
 const Congrats = ({success}) => {
     return (
         <div data-test="component-congrats" className="component-congrats">
