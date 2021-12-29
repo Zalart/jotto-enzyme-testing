@@ -9,7 +9,7 @@ function App() {
     <div className="container">
         <h1>Jotto</h1>
      <Congrats success={true} />
-        <Input />
+        <Input secretWord="party" />
       <GuessedWords guessedWords={[{guessedWord: 'train', letterMatchCount: 5}]} />
     </div>
   );

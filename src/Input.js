@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 
-function Input(props) {
+function Input({secretWord}) {
     const [val, setVal] = useState("");
     const handleWordChange = (e) => {
         setVal(e.target.value);
@@ -11,13 +11,15 @@ function Input(props) {
         // word
     }
     return (
-        <div className="input-component" data-test="component-input">
+        <div className="component-input" data-test="component-input">
             <input type="text" value={val} onChange={handleWordChange}></input>
             <button onClick={submitWord}>Send</button>
         </div>
     );
 }
-Input.propTypes = {
 
+Input.propTypes = {
+secretWord: PropTypes.string.isRequired,
 };
+
 export default Input;
