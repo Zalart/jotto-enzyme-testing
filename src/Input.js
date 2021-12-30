@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-function Input({secretWord}) {
+function Input({success, secretWord}) {
     const [currentGuess, setCurrentGuess] = React.useState("");
     const handleWordChange = (e) => {
         setCurrentGuess(e.target.value);
@@ -14,10 +14,11 @@ function Input({secretWord}) {
         // update guessedWords global state
         // check against secretWord and update success global state
     }
+    if (success) return <div className="component-input" data-test="component-input" />
     return (
         <div className="component-input" data-test="component-input">
             <form className="form-inline">
-            <input
+                <input
                 className="mb-2 mx-sm-3"
                 data-test="input-box"
                 type="text"

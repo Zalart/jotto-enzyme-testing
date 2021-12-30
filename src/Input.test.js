@@ -3,17 +3,49 @@ import {shallow} from "enzyme";
 import Input from "./Input";
 import {findByTestAttr, checkProps} from "../test/testUtils";
 
-const initialProps = {secretWord: "party"};
+const initialProps = {success: false, secretWord: "party"};
 
 const setup = (props={}) => {
     const setupProps = {...initialProps, ...props};
     return shallow(<Input {...setupProps} />)
 }
-
-test('renders without error', ()=> {
-    const wrapper = setup();
-    const inputComponent = findByTestAttr(wrapper, 'component-input');
-    expect(inputComponent.length).toBe(1);
+describe('render', () => {
+    describe('success is true', ()=> {
+        let wrapper;
+        beforeEach(()=>{
+            wrapper = setup({success:true});
+        })
+        test('renders without error', ()=> {
+            const inputComponent = findByTestAttr(wrapper, 'component-input');
+            expect(inputComponent.length).toBe(1);
+        })
+        test('input box is not shown', ()=> {
+            const inputBox = findByTestAttr(wrapper, 'input-box');
+            expect(inputBox.exists()).toBe(false);
+        });
+        test('submit button is not shown', ()=> {
+            const submitButton = findByTestAttr(wrapper, 'submit-button');
+            expect(submitButton.exists()).toBe(false);
+        })
+    });
+    describe('success is false', ()=> {
+        let wrapper;
+        beforeEach(()=>{
+            wrapper = setup({success:false});
+        })
+        test('renders without error', ()=> {
+            const inputComponent = findByTestAttr(wrapper, 'component-input');
+            expect(inputComponent.length).toBe(1);
+        })
+        test('input box is shown', ()=> {
+            const inputBox = findByTestAttr(wrapper, 'input-box');
+            expect(inputBox.exists()).toBe(true);
+        });
+        test('submit button is shown', ()=> {
+            const submitButton = findByTestAttr(wrapper, 'submit-button');
+            expect(submitButton.exists()).toBe(true);
+        })
+    })
 })
 
 test('check props types: doesnt throw a warning with the expected props', ()=> {
